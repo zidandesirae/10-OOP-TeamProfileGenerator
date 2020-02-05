@@ -12,14 +12,7 @@ so that I have quick access to emails and GitHub profiles
 How do you deliver this? Here are some guidelines:
 * Use the [Inquirer npm package](https://github.com/SBoudrias/Inquirer.js/) to prompt the user for their email, id, and specific information based on their role with the company.
 * Your app will run as a Node CLI to gather information about each employee.
-
-The dependencies are, [jest](https://jestjs.io/) for running the provided tests, and [inquirer](https://www.npmjs.com/package/inquirer) for collecting input from the user.
-
-## Minimum Requirements
-* Functional application.
-* GitHub repository with a unique name and a README describing the project.
-* User can use the CLI to generate an HTML page that displays information about their team.
-* All tests must pass.
+* Use [jest](https://jestjs.io/) for running the provided tests.
 
 ### Classes
 The project must have the these classes: `Employee`, `Manager`, `Engineer`,
@@ -37,34 +30,13 @@ The project must generate a `team.html` page in the `output` directory, that dis
   * Role-specific property (School, link to GitHub profile, or office number)
 
 
-## Finish Assignment:
-Please view the deployed project: 
+## Finished Assignment:
+Please view the deployed project: https://zidandesirae.github.io/10-OOP-TeamProfileGenerator/
 
-### Directory structure:
-```
-lib/           // classes and helper code
-  Employee.js
-  Engineer.js
-  Intern.js
-  Manager.js
-output/        // rendered output
-  team.html
-templates/     // HTML template(s)
-  templateHTML.js
-test/          // jest tests
-  Employee.test.js
-  Engineer.test.js
-  Intern.test.js
-  Manager.test.js
-app.js         // Runs the application
-.gitignore
-package-lock.json
-package.json
-```
+Github Repository: https://github.com/zidandesirae/10-OOP-TeamProfileGenerator
 
 ### Visuals
 
 ![](html.png)
 
-NPM RUN TEST
 ![](npmTests.gif)
