@@ -1,53 +1,41 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
+const jest = require("jest");
 const util = require("util");
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const html = require("./templates/templateHTML");
 
-
-
 const writeFileAsync = util.promisify(fs.writeFile);
-const appendFileAsync = util.promisify(fs.appendFile);
 
 let teamArray = [];
 let teamString = ``;
 
-//this calls all the functions in one in order
-async function main() {
+
+async function createTeam() {
      try {
-          await prompt()
-          // for i to teamArray.length  => 
+          await addEmployee();
 
           for (let i = 0; i < teamArray.length; i++) {
-               //template literal=``
                teamString = teamString + html.generateCard(teamArray[i]);
           }
 
-          let finalHTML = html.generateHTML(teamString)
+          let finalHTML = html.generateHTML(teamString);
+          console.log(teamString);
 
-          console.log(teamString)
-
-          //call generate function to generate the html template literal
-
-          //write file 
-          writeFileAsync("./output/team.html", finalHTML)
-
-
-     } catch (err) {
+          writeFileAsync("./output/team.html", finalHTML);
+     }    
+     catch (err) {
           return console.log(err);
      }
-
 };
 
-async function prompt() {
-     let responseDone = "";
-     // prompt to collect input and use do while atleast one and do it number of times depending on the while condition
+async function addEmployee() {
+     let allResponses = "";
      do {
           try {
                response = await inquirer.prompt([
-
                     {
                          type: "input",
                          name: "name",
@@ -67,54 +55,49 @@ async function prompt() {
                          type: "list",
                          name: "role",
                          message: "What is the employee's role:",
-                         choices: [
-                              "Engineer",
-                              "Intern",
-                              "Manager"
-                         ]
+                         choices: ["Engineer", "Intern", "Manager"]
                     }
                ]);
 
-               let response2 = ""
-               // if else statement
+               let response2 = "";
 
                if (response.role === "Engineer") {
                     response2 = await inquirer.prompt([{
                          type: "input",
-                         name: "x",
+                         name: "input",
                          message: "What is the employee's GitHub username?:",
                     }, ]);
-                    //store the object and push
-                    const engineer = new Engineer(response.name, response.id, response.email, response2.x);
+
+                    const engineer = new Engineer(response.name, response.id, response.email, response2.input);
                     teamArray.push(engineer);
-               } else if (response.role === "Intern") {
+               } 
+               else if (response.role === "Intern") {
                     response2 = await inquirer.prompt([{
                          type: "input",
-
-                         //the x is to only store into the team array
-                         name: "x",
+                         name: "input",
                          message: "What school is the employee attending?:",
                     }, ]);
-                    //store the object and push
-                    const intern = new Intern(response.name, response.id, response.email, response2.x);
+
+                    const intern = new Intern(response.name, response.id, response.email, response2.input);
                     teamArray.push(intern);
-               } else if (response.role === "Manager") {
+               } 
+               else if (response.role === "Manager") {
                     response2 = await inquirer.prompt([{
                          type: "input",
-                         name: "x",
+                         name: "input",
                          message: "What is the employee's office number?:",
                     }, ]);
-                    //store the object and push
-                    const manager = new Manager(response.name, response.id, response.email, response2.x);
+
+                    const manager = new Manager(response.name, response.id, response.email, response2.input);
                     teamArray.push(manager);
-               }
-          } catch (err) {
+               }   
+          } 
+          catch (err) {
                return console.log(err);
           }
-          console.log(teamArray)
-          //need to prompt do you want to continue
+          console.log(teamArray);
 
-          responseDone = await inquirer.prompt([{
+          allResponses = await inquirer.prompt([{
                type: "list",
                name: "finish",
                message: "Do you like to add another employee?: ",
@@ -124,10 +107,7 @@ async function prompt() {
                ]
           }, ]);
 
-          // console.log(responseDone.choices);
-          //the while parameter is saying continue running the code if the user selects "yes"
-     } while (responseDone.finish === "Yes");
+     } while (allResponses.finish === "Yes");
 }
 
-//call function to run application on the server
-main();
+createTeam();
