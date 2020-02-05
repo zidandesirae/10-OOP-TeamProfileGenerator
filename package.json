@@ -1,0 +1,27 @@
+{
+  "name": "hw10",
+  "version": "1.0.0",
+  "description": "10 - OOP: Team Profile Generator",
+  "main": "app.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zidandesirae/10-OOP-TeamProfileGenerator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zidandesirae/10-OOP-TeamProfileGenerator/issues"
+  },
+  "homepage": "https://github.com/zidandesirae/10-OOP-TeamProfileGenerator#readme",
+  "dependencies": {
+    "inquirer": "^7.0.4",
+    "jest": "^25.1.0"
+  }
+}
