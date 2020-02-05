@@ -35,8 +35,6 @@ Please view the deployed project: https://zidandesirae.github.io/10-OOP-TeamProf
 
 Github Repository: https://github.com/zidandesirae/10-OOP-TeamProfileGenerator
 
-### Visuals
-
 ![](html.png)
 
 ![](npmTests.gif)
